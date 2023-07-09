@@ -81,21 +81,21 @@ static void consume(TokenType type, const char* message) {
     }
     errorAtCurrent(message);
 }
-static void emitByte(byte_t byte) {
+static void emitByte(u8 byte) {
     writeChunk(currentChunk(), byte, parser.previous.line);
 }
-static void emitBytes(byte_t byte1, byte_t byte2) {
+static void emitBytes(u8 byte1, u8 byte2) {
     emitByte(byte1);
     emitByte(byte2);
 }
 static void emitReturn(void) { emitByte(OP_RETURN); }
-static byte_t makeConstant(Value value) {
+static u8 makeConstant(Value value) {
     int constant = addConstant(currentChunk(), value);
     if (constant > UINT8_MAX) {
         error("Too many constants in one chunk.");
         return 0;
     }
-    return (byte_t)constant;
+    return (u8)constant;
 }
 static void emitConstant(Value value) {
     emitBytes(OP_CONSTANT, makeConstant(value));
