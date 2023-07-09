@@ -7,5 +7,6 @@ sources = files(
   'scanner.c',
   'value.c',
   'vm.c',
-  'object.c'
+  'object.c',
+  'table.c'
 )

@@ -7,6 +7,7 @@
 #define DEBUG_PRINT_CODE
 #define DEBUG_TRACE_EXECUTION
 
-#define byte_t uint8_t
+#define u8 uint8_t
+#define u32 uint32_t
 
 #endif

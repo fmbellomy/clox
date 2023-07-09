@@ -24,7 +24,7 @@ typedef enum {
 typedef struct {
     int count;
     int capacity;
-    byte_t* code;
+    u8* code;
     int* lines;
     ValueArray constants;
 } Chunk;
@@ -36,7 +36,7 @@ void initChunk(Chunk* chunk);
 void freeChunk(Chunk* chunk);
 
 // writes a byte to the chunk.
-void writeChunk(Chunk* chunk, byte_t byte, int line);
+void writeChunk(Chunk* chunk, u8 byte, int line);
 
 // appends a constant to the chunk's internal value array.
 // returns the index of the added constant.

@@ -27,8 +27,12 @@ static void runtimeError(const char* format, ...) {
 void initVM(void) {
     resetStack();
     vm.objects = NULL;
+    initTable(&vm.strings);
 }
-void freeVM(void) { freeObjects(); }
+void freeVM(void) {
+    freeTable(&vm.strings);
+    freeObjects();
+}
 void push(Value value) {
     *vm.stackTop = value;
     vm.stackTop++;
@@ -82,7 +86,7 @@ static InterpretResult run(void) {
         disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code));
 #endif
 
-        byte_t instruction;
+        u8 instruction;
         switch (instruction = READ_BYTE()) {
         case OP_CONSTANT: {
             Value constant = READ_CONSTANT();
