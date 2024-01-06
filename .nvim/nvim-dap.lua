@@ -13,7 +13,7 @@ dap.adapters.lldb = {
 dap.configurations.c = {
   {
     name = "clox",
-    type = "lldb-vscode",
+    type = "lldb",
     request = "launch",
     program = function()
       vim.fn.system("cd ${workspaceFolder}")
