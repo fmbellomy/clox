@@ -56,6 +56,7 @@ static void runFile(const char* path) {
         exit(70);
 }
 int main(int argc, const char* argv[]) {
+    printf("hello?");
     initVM();
     if (argc == 1) {
         repl();

@@ -4,19 +4,22 @@
 local dap = require("dap")
 
 -- See https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt for configuration options.
-dap.adapters.lldb = {
-  type = "executable", -- 'executable', 'server', or 'pipe'
-  command = "/usr/bin/lldb-vscode",
-  name = "lldb"
+dap.adapters.codelldb = {
+  type = "server", -- 'executable', 'server', or 'pipe'
+  host = '127.0.0.1',
+  port = 13000,
+  executable = {
+    command = "codelldb",
+    args = { "--port", "13000" }
+  }
 }
 
 dap.configurations.c = {
   {
     name = "clox",
-    type = "lldb",
+    type = "codelldb",
     request = "launch",
     program = function()
-      vim.fn.system("cd ${workspaceFolder}")
       vim.fn.system("meson build --buildtype=debug --reconfigure")
       vim.fn.system("cd build")
       vim.fn.system("meson compile")
